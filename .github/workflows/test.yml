@@ -10,14 +10,14 @@ permissions:
   pull-requests: write
 
 jobs:
-  test-job:
-    runs-on: ubuntu-latest
-    environment: internal
-    steps:
-      - name: Say hello
-        run: |
-          echo "Hello world"
-          echo "Hello ${{ secrets.TEST_SECRET }}"
+  # test-job:
+  #   runs-on: ubuntu-latest
+  #   environment: internal
+  #   steps:
+  #     - name: Say hello
+  #       run: |
+  #         echo "Hello world"
+  #         echo "Hello ${{ secrets.TEST_SECRET }}"
 
   pr-commentary-job:
     runs-on: ubuntu-latest
