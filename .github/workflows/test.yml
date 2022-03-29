@@ -2,13 +2,58 @@ name: test
 
 on:
   workflow_dispatch:
+  pull_request:
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
 
 jobs:
-  test-job:
+  # test-job:
+  #   runs-on: ubuntu-latest
+  #   environment: internal
+  #   steps:
+  #     - name: Say hello
+  #       run: |
+  #         echo "Hello world"
+  #         echo "Hello ${{ secrets.TEST_SECRET }}"
+
+  pr-commentary-job:
     runs-on: ubuntu-latest
-    environment: internal
+    if: github.event_name == 'pull_request'
     steps:
       - name: Say hello
         run: |
-          echo "Hello world"
-          echo "Hello ${{ secrets.TEST_SECRET }}"
+          echo "Hello World"
+
+      - name: Commentary
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const tag = "#tag <!-- #comment-${{ github.job }} -->"
+
+            comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+            })
+
+            console.log(comments)
+            const targetTags = comments.data.filter((item) => item.body.includes(tag))
+            console.log(targetTags)
+
+            for (let item of targetTags) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: item.id
+              })
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+              body: `Hello world comment... ${tag}`,
+            })
