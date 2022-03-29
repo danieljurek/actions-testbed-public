@@ -12,3 +12,32 @@ jobs:
         run: |
           echo "Hello world"
           echo "Hello ${{ secrets.TEST_SECRET }}"
+
+  pr-commentary-job:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello World"
+
+      - name: Commentary
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const tag = "#findmehere"
+
+            comments = await github.rest.issues({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+            })
+
+            console.log(comments)
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.number,
+              body: `Hello world comment... ${tag}`,
+            })
