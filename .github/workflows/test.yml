@@ -43,13 +43,13 @@ jobs:
             const targetTags = comments.data.filter((item) => item.body.includes(tag))
             console.log(targetTags)
 
-            targetTags.forEach((item) => {
+            for (let item of targetTags) {
               await github.rest.issues.deleteComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: item.id
               })
-            })
+            }
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
