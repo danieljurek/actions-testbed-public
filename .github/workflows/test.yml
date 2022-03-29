@@ -31,7 +31,7 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            const tag = "#findmehere"
+            const tag = "#tag <!-- #comment-${{ github.job }} -->"
 
             comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
