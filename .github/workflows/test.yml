@@ -40,7 +40,7 @@ jobs:
             })
 
             console.log(comments)
-            console.log(comments.data.filter((item) => item.includes(tag)))
+            console.log(comments.data.filter((item.body) => item.includes(tag)))
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
