@@ -15,7 +15,9 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "wsl --update --web-download"
-          wsl --update --web-download | Out-String
+          $update = wsl --update --web-download | Out-String
+          wsl --version 
+          wsl --set-default-version 1
           
           Write-Host "wsl --status" 
           wsl --status 
