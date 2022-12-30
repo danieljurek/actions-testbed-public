@@ -14,6 +14,9 @@ jobs:
       - name: Run WSL 
         shell: pwsh
         run: |
+          Write-Host "wsl --update --web-download"
+          wsl --update --web-download
+          
           Write-Host "wsl --status" 
           wsl --status 
 
