@@ -11,11 +11,6 @@ if ($IsLinux) {
     sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/ /"
 
     $aptPackages = @(
-        "git",
-        "curl",
-        "zip",
-        "unzip",
-        "tar",
         "at",
         "libxt-dev",
         "gperf",
@@ -104,8 +99,7 @@ if ($IsLinux) {
         "cuda-nvml-dev-12-1",
         "libcudnn8-dev",
         "libnccl2",
-        "libnccl-dev",
-        "powershell"
+        "libnccl-dev"
     )
 
     Write-Host "===================== APT ====================="
