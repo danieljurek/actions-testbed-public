@@ -8,7 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     environment: internal
     steps:
+      - uses: actions/checkout@v4
+
       - name: Say hello
         run: |
           echo "Hello world"
           echo "Hello ${{ secrets.TEST_SECRET }}"
+
+      - name: Setup environment
+        shell: pwsh
+        run: ./setup-env.ps1
