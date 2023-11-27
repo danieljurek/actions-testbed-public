@@ -112,5 +112,5 @@ if ($IsLinux) {
         'jinja2'
     )
 
-    pip install @pipPackages
+    sudo pip install @pipPackages
 }
