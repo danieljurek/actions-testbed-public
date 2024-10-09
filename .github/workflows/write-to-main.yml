@@ -8,19 +8,19 @@ permissions:
 
 jobs:
   write-to-main: 
-  runs-on: ubuntu-latest
-  steps: 
-    # Check out the source code of the repo
-    - uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    steps: 
+      # Check out the source code of the repo
+      - uses: actions/checkout@v4
 
-    # Modify a file in the repo source
-    - name: Write to a file
-      run: |
+      # Modify a file in the repo source
+      - name: Write to a file
+        run: |
+          echo "hello world $GITHUB_RUN_ID" >> test.txt
 
-
-    # Persist changes in main
-    - name: Commit and push
-      run: |
-        git add hello.txt
-        git commit -m "Update hello.txt"
-        git push
+      # Persist changes in main
+      - name: Commit and push
+        run: |
+          git add hello.txt
+          git commit -m "Update hello.txt"
+          git push
