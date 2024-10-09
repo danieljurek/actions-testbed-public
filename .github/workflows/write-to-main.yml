@@ -16,7 +16,7 @@ jobs:
       # Modify a file in the repo source
       - name: Write to a file
         run: |
-          echo "hello world $GITHUB_RUN_ID" >> test.txt
+          echo "hello world $GITHUB_RUN_ID" >> hello.txt
 
       # Persist changes in main
       - name: Commit and push
@@ -24,3 +24,5 @@ jobs:
           git add hello.txt
           git commit -m "Update hello.txt"
           git push
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
