@@ -1,0 +1,26 @@
+name: write-to-main
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  write-to-main: 
+  runs-on: ubuntu-latest
+  steps: 
+    # Check out the source code of the repo
+    - uses: actions/checkout@v4
+
+    # Modify a file in the repo source
+    - name: Write to a file
+      run: |
+
+
+    # Persist changes in main
+    - name: Commit and push
+      run: |
+        git add hello.txt
+        git commit -m "Update hello.txt"
+        git push
