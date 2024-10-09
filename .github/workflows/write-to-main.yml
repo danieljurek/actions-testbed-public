@@ -21,8 +21,8 @@ jobs:
       # Persist changes in main
       - name: Commit and push
         run: |
-          git config user.email "djurek@microsoft.com"
-          git config user.name "Daniel Jurek"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add hello.txt
           git commit -m "Update hello.txt"
           git push
