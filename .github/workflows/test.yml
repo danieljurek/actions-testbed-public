@@ -10,10 +10,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: |
-          echo 'hello={"hello": "world"}' >> $GITHUB_OUTPUT
+          echo 'greeting={"hello": "world"}' >> $GITHUB_OUTPUT
         id: hello-world
 
-      - run: echo "${{ steps.hello-world.outputs.hello}}"
+      - run: echo "${{ steps.hello-world.outputs.greeting }}"
 
       - run: echo "IT WORKED!!" 
-        if: steps.hello-world.outputs.hello == 'world'
+        if: fromJson(steps.hello-world.outputs.greeting).hello == 'world'
