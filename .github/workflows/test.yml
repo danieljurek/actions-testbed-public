@@ -6,15 +6,14 @@ on:
 jobs:
   test-job:
     runs-on: ubuntu-latest
-    environment: internal
     steps:
       - uses: actions/checkout@v4
 
-      - name: Say hello
-        run: |
-          echo "Hello world"
-          echo "Hello ${{ secrets.TEST_SECRET }}"
+      - run: |
+          echo 'hello={"hello": "world"}' >> $GITHUB_OUTPUT
+        id: hello-world
 
-      - name: Setup environment
-        shell: pwsh
-        run: ./setup-env.ps1
+      - run: echo "${{ steps.hello-world.outputs.hello}}"
+
+      - run: echo "IT WORKED!!" 
+        if: steps.hello-world.outputs.hello == 'world'
