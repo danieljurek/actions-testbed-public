@@ -8,12 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - run: |
-          echo 'greeting={"hello": "world"}' >> $GITHUB_OUTPUT
-        id: hello-world
-
-      - run: echo "${{ steps.hello-world.outputs.greeting }}"
-
-      - run: echo "IT WORKED!!" 
-        if: fromJson(steps.hello-world.outputs.greeting).hello == 'world'
+      - name: Install azd
+        uses: Azure/setup-azd
