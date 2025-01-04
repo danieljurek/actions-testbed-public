@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install azd
-        uses: danieljurek/setup-azd@1539698ae4936a811f7c1d3b32b78c25d6f5b16e
+        uses: danieljurek/setup-azd@72387cf145f53c7370d85fcfab22a9bcb845666b
