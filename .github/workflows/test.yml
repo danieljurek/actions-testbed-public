@@ -2,9 +2,17 @@ name: test
 
 on:
   workflow_dispatch:
+    inputs:
+      sha:
+        required: true
+        type: string
+      markdown:
+        required: true
+        type: string
 
 jobs:
   test-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: azure/setup-azd@v2
+      - run: echo 'hello world'
+
