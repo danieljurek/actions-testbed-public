@@ -27,6 +27,13 @@ jobs:
           CONCLUSION: ${{ inputs.Conclusion }}
         with:
           script: |
+            const suite = await github.rest.checks.createSuite({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: process.env.SHA,
+            });
+            console.log(suite);
+            console.log('-----------------------------------');
             const result = await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
