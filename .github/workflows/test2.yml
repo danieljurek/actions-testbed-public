@@ -33,7 +33,7 @@ jobs:
               name: "Docs preview 2",
               head_sha: process.env.SHA,
               details_url: 'https://dev.azure.com/azure-sdk/internal/_build/results?buildId=5058060&view=logs&j=407c8e09-36f7-5b0b-5ef1-9a46f011447b&t=b7bb9f89-2346-5516-09dd-ff209e5433c8&l=63',
-              external_id: '123'
+              external_id: '123',
               status: 'completed',
               conclusion: process.env.CONCLUSION,
               output: { 
