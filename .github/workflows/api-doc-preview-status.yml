@@ -15,7 +15,7 @@ on:
         type: string
         required: true
         description: URL to link to when the status name is clicked
-      Conclusion:
+      State:
         type: choice
         options: ["error", "failure", "pending", "success"]
 
@@ -31,14 +31,14 @@ jobs:
           SHA: ${{ inputs.SHA }}
           DESCRIPTION: ${{ inputs.Description }}
           TARGET_URL: ${{ inputs.TargetUrl }}
-          CONCLUSION: ${{ inputs.Conclusion }}
+          STATE: ${{ inputs.State }}
         with:
           script: |
             const commitStatus = await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
               sha: process.env.SHA,
-              state: process.env.CONCLUSION,
+              state: process.env.STATE,
               context: 'Swagger ApiDocPreview',
               description: process.env.DESCRIPTION,
               target_url: process.env.TARGET_URL,
