@@ -17,7 +17,7 @@ on:
         description: URL to link to when the status name is clicked
       Conclusion:
         type: choice
-        options: ["success", "failure", "neutral", "cancelled", "timed_out", "action_required", "skipped"]
+        options: ["error", "failure", "pending", "success"]
 
 permissions:
   statuses: write
