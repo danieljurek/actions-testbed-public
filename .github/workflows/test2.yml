@@ -54,7 +54,7 @@ jobs:
             const commitStatus = await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head_sha: process.env.SHA,
+              sha: process.env.SHA,
               state: 'success',
               context: 'Status name',
               description: 'this is a description',
