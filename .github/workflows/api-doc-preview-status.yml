@@ -20,7 +20,7 @@ on:
         options: ["success", "failure", "neutral", "cancelled", "timed_out", "action_required", "skipped"]
 
 permissions:
-  checks: write
+  statuses: write
 
 jobs:
   ubuntu: 
