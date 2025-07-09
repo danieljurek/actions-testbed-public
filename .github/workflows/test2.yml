@@ -35,7 +35,7 @@ jobs:
               details_url: 'https://microsoft.com/',
               status: 'completed',
               conclusion: process.env.CONCLUSION,
-              // output: { title: 'Click here to see a preview', summary: 'yes, a preview' },
+              output: { title: 'Click here to see a preview', summary: 'yes, a preview' },
             });
             
             console.log(result);
