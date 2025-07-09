@@ -5,37 +5,12 @@ on:
     branches: [main]
   push: 
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   run-wsl:
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     steps:
-      - name: Run WSL 
-        shell: pwsh
-        run: |
-          [console]::OutputEncoding = New-Object System.Text.UnicodeEncoding
-          Write-Host "wsl --update --web-download"
-          wsl --update --web-download | Out-String
-          
-          Write-Host "wsl --status" 
-          wsl --status 
-
-          Write-Host "wsl --list --online" 
-          wsl --list --online
-
-          write-host "WSL install of ubuntu."
-          Write-Host "wsl --install -d Ubuntu-20.04 --web-download"
-          wsl --install -d Ubuntu-20.04 --web-download
-
-          Write-Host "wsl --list --all --verbose | out-string"
-          $wsl = wsl --list --all --verbose | out-string
-          write-host $wsl
-
-          while ($wsl -notmatch 'Ubuntu-20.04.*running') {
-            start-sleep -seconds 1
-            Write-Host "wsl --list --all --verbose | out-string"
-            $wsl = wsl --list --all --verbose | out-string
-            write-host $wsl
-          }
-          write-host "Ubuntu installed."
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            console.log(`Current SHA: ${context.sha}`);

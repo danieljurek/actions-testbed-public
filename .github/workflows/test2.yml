@@ -3,15 +3,39 @@ name: test2
 on:
   workflow_dispatch:
     inputs:
-      sha:
-        required: true
+      SHA:
         type: string
-      markdown:
         required: true
+      Markdown:
         type: string
+        required: true
+      Conclusion:
+        type: choice
+        options: ["success", "failure", "neutral", "cancelled", "timed_out", "action_required", "skipped"]
+
+permissions:
+  checks: write
 
 jobs:
-  test-job:
+  ubuntu: 
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'hello world'
+      - uses: actions/github-script@v7
+        env:
+          SHA: ${{ inputs.SHA }}
+          MARKDOWN: ${{ inputs.Markdown }}
+          CONCLUSION: ${{ inputs.Conclusion }}
+        with:
+          script: |
+            const result = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: "Docs preview 2",
+              head_sha: process.env.SHA,
+              details_url: 'https://microsoft.com/',
+              status: 'completed',
+              conclusion: process.env.CONCLUSION,
+              // output: { title: 'Click here to see a preview', summary: 'yes, a preview' },
+            });
+            
+            console.log(result);
